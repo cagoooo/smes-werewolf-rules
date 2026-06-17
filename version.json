@@ -1,4 +1,4 @@
 {
-    "version":  "2026.06.17-2",
-    "notes":  "desktop width utilization: 1320px container, auto-fill role grid, larger fonts"
+    "version":  "2026.06.17-4",
+    "notes":  "修復 OG 預覽圖左側圓角圖示貼上時的背景正方形切邊問題"
 }

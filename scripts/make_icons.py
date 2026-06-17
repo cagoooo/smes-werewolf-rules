@@ -2,7 +2,7 @@
 """產生狼人殺宣導站全套圖示：favicon.ico / favicon.svg(另外寫) / app icons / maskable。
 主題：滿月 + 幾何狼頭剪影，深靛藍夜色。純 PIL 繪製，無外部字型依賴。"""
 import math, os
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS = os.path.join(ROOT, "assets")
@@ -26,6 +26,14 @@ def vgrad(size, top, bot):
     for y in range(size):
         img.putpixel((0, y), lerp(top, bot, y / max(1, size - 1)))
     return img.resize((size, size))
+
+
+def vgrad_rect(w, h, top, bot):
+    img = Image.new("RGB", (1, h))
+    for y in range(h):
+        img.putpixel((0, y), lerp(top, bot, y / max(1, h - 1)))
+    return img.resize((w, h))
+
 
 
 def rounded_mask(size, radius):
@@ -134,8 +142,63 @@ draw_icon(180).save(os.path.join(ROOT, "apple-touch-icon.png"))
 ico = draw_icon(64)
 ico.save(os.path.join(ROOT, "favicon.ico"), sizes=[(16, 16), (32, 32), (48, 48), (64, 64)])
 # OG 預覽圖 1200x630
-og = vgrad(1200, NIGHT_TOP, NIGHT_BOT).convert("RGBA")
-icon_big = draw_icon(360, maskable=True)
-og.alpha_composite(icon_big, (110, 135))
+og = vgrad_rect(1200, 630, NIGHT_TOP, NIGHT_BOT).convert("RGBA")
+icon_big = draw_icon(330, maskable=False)
+og.paste(icon_big, (80, 150), icon_big) # y = (630 - 330) / 2 = 150
+
+# 準備在圖片上繪製文字
+draw = ImageDraw.Draw(og)
+
+# 載入字型 (微軟正黑體)
+try:
+    font_title_small = ImageFont.truetype("C:/Windows/Fonts/msjhbd.ttc", 26)
+    font_title_large = ImageFont.truetype("C:/Windows/Fonts/msjhbd.ttc", 68)
+    font_subtitle    = ImageFont.truetype("C:/Windows/Fonts/msjhbd.ttc", 38)
+    font_body        = ImageFont.truetype("C:/Windows/Fonts/msjh.ttc", 22)
+    font_url         = ImageFont.truetype("C:/Windows/Fonts/msjhbd.ttc", 20)
+except Exception as e:
+    print("無法載入微軟正黑體，將使用預設字型:", e)
+    font_title_small = font_title_large = font_subtitle = font_body = font_url = ImageFont.load_default()
+
+# 1. 桃園市石門國小課照班 (月光黃)
+draw.text((460, 110), "桃園市石門國小課照班", font=font_title_small, fill=MOON_LIGHT + (255,))
+
+# 2. 狼人殺冠軍賽 (亮金/琥珀)
+draw.text((460, 155), "狼人殺冠軍賽", font=font_title_large, fill=MOON_DARK + (255,))
+
+# 3. 官方規則宣導站 · 線上總覽 (白色)
+draw.text((460, 250), "官方規則宣導站 · 線上總覽", font=font_subtitle, fill=(255, 255, 255, 255))
+
+# 4. 細橫線 (分隔線)
+draw.line([(460, 315), (1120, 315)], fill=(184, 182, 216, 50), width=2)
+
+# 5. 描述文字 (Muted 紫灰)
+desc_line1 = "一頁看懂 12 人賽制配置、角色技能與遊戲流程，"
+desc_line2 = "勝負判定與名詞解釋隨點隨查，手機投影都好讀。"
+draw.text((460, 340), desc_line1, font=font_body, fill=(184, 182, 216, 220))
+draw.text((460, 380), desc_line2, font=font_body, fill=(184, 182, 216, 220))
+
+# 6. 網址膠囊
+capsule_x = 460
+capsule_y = 445
+capsule_w = 490
+capsule_h = 44
+capsule_r = 22
+draw.rounded_rectangle(
+    [capsule_x, capsule_y, capsule_x + capsule_w, capsule_y + capsule_h],
+    radius=capsule_r,
+    fill=(15, 12, 38, 200),
+    outline=(184, 182, 216, 60),
+    width=1
+)
+# 膠囊文字 (月光黃)
+draw.text(
+    (capsule_x + 24, capsule_y + 10),
+    "cagoooo.github.io/smes-werewolf-rules/",
+    font=font_url,
+    fill=MOON_LIGHT + (255,)
+)
+
 og.convert("RGB").save(os.path.join(ASSETS, "og-cover.png"))
 print("icons generated ->", os.listdir(ASSETS))
+
