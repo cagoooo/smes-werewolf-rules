@@ -14,8 +14,8 @@
 <meta property="og:url" content="https://cagoooo.github.io/smes-werewolf-rules/" />
 <meta property="og:title" content="🐺 石門國小課照班 狼人殺冠軍賽 · 規則總覽" />
 <meta property="og:description" content="兩場 12 人賽制、角色技能、遊戲流程、勝負判定與名詞解釋，一頁看懂怎麼玩。" />
-<meta property="og:image" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-6" />
-<meta property="og:image:secure_url" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-6" />
+<meta property="og:image" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-7" />
+<meta property="og:image:secure_url" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-7" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:type" content="image/png" />
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="🐺 石門國小課照班 狼人殺冠軍賽 · 規則總覽" />
 <meta name="twitter:description" content="兩場 12 人賽制、角色技能、遊戲流程、勝負判定與名詞解釋，一頁看懂怎麼玩。" />
-<meta name="twitter:image" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-6" />
+<meta name="twitter:image" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-7" />
 
 <style>
   :root{
@@ -66,7 +66,7 @@
   }
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(16px,3vw,32px)}
 
-  /* ====== 頂部導覽 ====== */
+  /* ===== 頂部導覽 ===== */
   .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 86%,transparent);
     backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   .topbar__row{display:flex;align-items:center;gap:10px;max-width:var(--maxw);margin:0 auto;padding:8px clamp(12px,3vw,32px)}
@@ -76,15 +76,45 @@
   .theme-btn{margin-left:auto;flex:none;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);
     background:var(--card);color:var(--ink);font-size:18px;cursor:pointer;transition:.2s}
   .theme-btn:active{transform:scale(.92)}
-  .nav{display:flex;gap:8px;overflow-x:auto;padding:8px clamp(12px,3vw,32px) 10px;max-width:var(--maxw);margin:0 auto;
-    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+
+  /* 導覽列：手機左右滑動（修彋 iOS Safari scroll clip + 右側漸層提示） */
+  .nav-wrap{
+    position:relative;
+    /* 右側漸層 fade mask（提示可往右滑） */
+    -webkit-mask-image:linear-gradient(to right, black calc(100% - 48px), transparent 100%);
+    mask-image:linear-gradient(to right, black calc(100% - 48px), transparent 100%);
+  }
+  .nav{
+    display:flex;gap:8px;
+    overflow-x:auto;
+    /* 重要：讓索引列貧齊全寬，才能頂到心滑動 */
+    width:100%;
+    padding:8px clamp(12px,3vw,32px) 10px;
+    /* 修彋 iOS Safari：scroll container 內最後項目被裁斷，用 ::after 補右側 padding */
+    padding-right:0;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    /* 避免 區域被超出截斷 */
+    box-sizing:border-box;
+  }
+  /* iOS Safari scroll clip bug 修彋：最後項目加假元素弥補右側空間 */
+  .nav::after{
+    content:'';
+    flex:none;
+    width:clamp(12px,3vw,32px);
+    /* 右偵安全距離 */
+  }
   .nav::-webkit-scrollbar{display:none}
   .nav a{flex:none;font-size:13.5px;font-weight:700;color:var(--muted);text-decoration:none;
     padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--card);
-    transition:.2s;white-space:nowrap}
+    transition:.2s;white-space:nowrap;user-select:none;-webkit-user-select:none}
   .nav a:hover{color:var(--ink)}
   .nav a.active{color:#1a1430;background:linear-gradient(135deg,var(--gold-soft),var(--gold));border-color:transparent}
   html[data-theme="light"] .nav a.active{color:#fff;background:linear-gradient(135deg,var(--accent),#9d6bff)}
+  /* 桌機不需要漸層 */
+  @media(min-width:768px){
+    .nav-wrap{-webkit-mask-image:none;mask-image:none}
+  }
 
   /* ====== Hero ====== */
   .hero{position:relative;text-align:center;padding:46px 16px 30px}
@@ -269,16 +299,19 @@
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="切換亮暗主題" title="切換亮暗主題">🌙</button>
   </div>
-  <nav class="nav" id="nav">
-    <a href="#overview">🏆 賽事總覽</a>
-    <a href="#flow">🌙 遊戲流程</a>
-    <a href="#roles">🎭 角色技能</a>
-    <a href="#rounds">⚔️ 兩場賽制</a>
-    <a href="#win">🚩 勝負判定</a>
-    <a href="#mvp">⭐ MVP 投票</a>
-    <a href="#terms">📖 名詞解釋</a>
-  </nav>
+  <div class="nav-wrap">
+    <nav class="nav" id="nav">
+      <a href="#overview">🏆 賽事總覽</a>
+      <a href="#flow">🌙 遊戲流程</a>
+      <a href="#roles">🎭 角色技能</a>
+      <a href="#rounds">⚔️ 兩場賽制</a>
+      <a href="#win">🚩 勝負判定</a>
+      <a href="#mvp">⭐ MVP 投票</a>
+      <a href="#terms">📖 名詞解釋</a>
+    </nav>
+  </div>
 </header>
+
 
 <!-- ===== Hero ===== -->
 <div class="hero">
@@ -670,7 +703,7 @@
 /* ---- Service Worker 註冊 + 版本更新通知（雙線偵測）---- */
 (function(){
   if(!('serviceWorker' in navigator)) return;
-  var APP_VERSION='2026.06.17-6';
+  var APP_VERSION='2026.06.17-7';
   var reloaded=false;
   var _regRef=null; // 保存 registration ref，供線 B 的 showBar 使用
 
