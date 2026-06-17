@@ -1,5 +1,7 @@
-param([string]$Notes = "內容更新")
-# 一鍵升版：同步 version.json / sw.js(BUILD_VERSION) / index.html(APP_VERSION)，UTF-8 無 BOM
+param([string]$Notes = "content update")
+# Bump version across version.json / sw.js(BUILD_VERSION) / index.html(APP_VERSION). Writes UTF-8 no BOM.
+# NOTE: keep this script ASCII-only -- Windows PowerShell 5.1 parses no-BOM .ps1 as the system (Big5) codepage,
+#       so non-ASCII characters here (esp. full-width brackets) break string parsing.
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 $enc  = New-Object System.Text.UTF8Encoding($false)
@@ -16,4 +18,4 @@ foreach ($f in @(@("sw.js","const BUILD_VERSION = '[^']*';","const BUILD_VERSION
   $p = Join-Path $root $f[0]; $t = [System.IO.File]::ReadAllText($p, [System.Text.Encoding]::UTF8)
   [System.IO.File]::WriteAllText($p, [regex]::Replace($t, $f[1], $f[2]), $enc)
 }
-Write-Host "bumped -> $ver（接著 git add -A; git commit; git push）"
+Write-Host "bumped -> $ver  (next: git add -A; git commit; git push)"
