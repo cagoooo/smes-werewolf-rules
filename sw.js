@@ -1,5 +1,5 @@
 /* 石門國小狼人殺規則站 Service Worker — 版本控管 + 更新通知 */
-const BUILD_VERSION = '2026.06.17-5';        // 每次部署改它（或跑 scripts/bump-version.ps1）
+const BUILD_VERSION = '2026.06.17-6';        // 每次部署改它（或跑 scripts/bump-version.ps1）
 const CACHE = 'wolf-' + BUILD_VERSION;
 const PRECACHE = [
   './', './index.html', './favicon.svg', './favicon.ico', './apple-touch-icon.png',

@@ -1,4 +1,4 @@
 {
-    "version":  "2026.06.17-5",
-    "notes":  "修復角色技能列表 li 元素 display:flex 造成的中文折行碎裂排版問題"
+    "version":  "2026.06.17-6",
+    "notes":  "補強 SW 雙線偵測機制：加入 SW_ACTIVATED message 監聽與通知列動畫優化"
 }
