@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>🐺 石門國小課照班 狼人殺冠軍賽 · 規則總覽</title>
+<meta name="description" content="桃園市龍潭區石門國民小學 課照班狼人殺冠軍賽完整規則：兩場 12 人賽制、角色技能、遊戲流程、勝負判定與名詞解釋，手機也好讀。" />
+<meta name="theme-color" content="#1e1b4b" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="🐺 石門國小課照班 狼人殺冠軍賽 · 規則總覽" />
+<meta property="og:description" content="兩場 12 人賽制、角色技能、遊戲流程、勝負判定與名詞解釋，一頁看懂怎麼玩。" />
+<meta property="og:image" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=1" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+  :root{
+    --bg:#15132e; --bg2:#1e1b4b; --card:rgba(255,255,255,.05); --card2:rgba(255,255,255,.08);
+    --ink:#f5f4ff; --muted:#b8b6d8; --line:rgba(255,255,255,.12);
+    --gold:#fbbf24; --gold-soft:#fde68a;
+    --wolf:#f87171; --wolf-bg:rgba(248,113,113,.14);
+    --god:#60a5fa; --god-bg:rgba(96,165,250,.14);
+    --villager:#34d399; --villager-bg:rgba(52,211,153,.14);
+    --accent:#a78bfa;
+    --shadow:0 18px 40px -16px rgba(0,0,0,.6);
+    --radius:18px;
+  }
+  html[data-theme="light"]{
+    --bg:#f3f2fb; --bg2:#e9e7fb; --card:#ffffff; --card2:#f7f6ff;
+    --ink:#1f1b3a; --muted:#5b5780; --line:rgba(30,27,75,.12);
+    --gold:#c2860b; --gold-soft:#9a6a08;
+    --wolf:#dc2626; --wolf-bg:rgba(220,38,38,.08);
+    --god:#2563eb; --god-bg:rgba(37,99,235,.08);
+    --villager:#059669; --villager-bg:rgba(5,150,105,.08);
+    --accent:#7c3aed;
+    --shadow:0 14px 34px -18px rgba(60,50,120,.4);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
+    color:var(--ink); line-height:1.75; background:var(--bg);
+    overflow-x:hidden; position:relative;
+    padding-bottom:env(safe-area-inset-bottom);
+    transition:background-color .3s,color .3s;
+  }
+  body::before{ /* 固定氛圍光暈層（避開手機 background-attachment:fixed 的卡頓） */
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background-image:
+      radial-gradient(1200px 600px at 80% -8%, rgba(167,139,250,.22), transparent 60%),
+      radial-gradient(900px 500px at -10% 10%, rgba(96,165,250,.16), transparent 55%);
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 16px}
+
+  /* ====== 頂部導覽 ====== */
+  .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 86%,transparent);
+    backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .topbar__row{display:flex;align-items:center;gap:10px;max-width:920px;margin:0 auto;padding:8px 12px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;white-space:nowrap}
+  .brand img{width:30px;height:30px;border-radius:8px}
+  .brand small{display:block;font-size:10.5px;font-weight:600;color:var(--muted)}
+  .theme-btn{margin-left:auto;flex:none;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);font-size:18px;cursor:pointer;transition:.2s}
+  .theme-btn:active{transform:scale(.92)}
+  .nav{display:flex;gap:8px;overflow-x:auto;padding:8px 12px 10px;max-width:920px;margin:0 auto;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{flex:none;font-size:13.5px;font-weight:700;color:var(--muted);text-decoration:none;
+    padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--card);
+    transition:.2s;white-space:nowrap}
+  .nav a:hover{color:var(--ink)}
+  .nav a.active{color:#1a1430;background:linear-gradient(135deg,var(--gold-soft),var(--gold));border-color:transparent}
+  html[data-theme="light"] .nav a.active{color:#fff;background:linear-gradient(135deg,var(--accent),#9d6bff)}
+
+  /* ====== Hero ====== */
+  .hero{position:relative;text-align:center;padding:46px 16px 30px}
+  .hero__moon{width:96px;height:96px;margin:0 auto 14px;filter:drop-shadow(0 10px 26px rgba(251,191,36,.4))}
+  .hero h1{font-size:clamp(26px,7vw,42px);line-height:1.25;font-weight:900;letter-spacing:.5px}
+  .hero h1 .g{background:linear-gradient(120deg,var(--gold-soft),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .sub{margin-top:8px;color:var(--muted);font-size:15px;font-weight:600}
+  .hero .school{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:6px 14px;border-radius:999px;
+    background:var(--card);border:1px solid var(--line);font-size:13px;color:var(--muted)}
+  .hero .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+  .pill{font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card)}
+  .pill.gold{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 40%,transparent)}
+
+  /* ====== 區塊 ====== */
+  section{scroll-margin-top:108px;padding:30px 0 8px}
+  .sec-head{display:flex;align-items:center;gap:11px;margin-bottom:18px}
+  .sec-head .ic{font-size:26px;flex:none;width:48px;height:48px;display:grid;place-items:center;
+    border-radius:14px;background:var(--card);border:1px solid var(--line)}
+  .sec-head h2{font-size:clamp(20px,5vw,26px);font-weight:900;letter-spacing:.5px}
+  .sec-head p{font-size:13px;color:var(--muted);font-weight:600;margin-top:1px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+  .card + .card{margin-top:14px}
+  .grid{display:grid;gap:14px}
+  @media(min-width:620px){.grid.cols-2{grid-template-columns:1fr 1fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+
+  .lead{font-size:15.5px;color:var(--ink)}
+  .lead b{color:var(--gold)}
+
+  /* 重點數字卡 */
+  .stat{display:flex;flex-direction:column;gap:2px;text-align:center;padding:16px 12px}
+  .stat .n{font-size:30px;font-weight:900;background:linear-gradient(120deg,var(--gold-soft),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+  html[data-theme="light"] .stat .n{background:linear-gradient(120deg,var(--accent),#9d6bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat .l{font-size:13px;color:var(--muted);font-weight:700}
+
+  /* 流程步驟 */
+  .flow{position:relative;margin-top:4px}
+  .step{display:flex;gap:14px;padding:6px 0}
+  .step__num{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+    font-weight:900;font-size:16px;color:#1a1430;background:linear-gradient(135deg,var(--gold-soft),var(--gold));
+    box-shadow:0 6px 16px -6px rgba(251,191,36,.5)}
+  .step__body{flex:1;padding-bottom:14px;border-left:0}
+  .step:not(:last-child) .step__num{position:relative}
+  .step:not(:last-child) .step__num::after{content:"";position:absolute;top:46px;left:50%;transform:translateX(-50%);
+    width:2px;height:calc(100% + 4px);background:linear-gradient(var(--gold),transparent)}
+  .step h4{font-size:15.5px;font-weight:800;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .step p{font-size:13.5px;color:var(--muted);margin-top:3px}
+  .tag{font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;border:1px solid var(--line)}
+  .tag.night{color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+  .tag.day{color:var(--gold);background:color-mix(in srgb,var(--gold) 14%,transparent)}
+
+  /* 角色卡 */
+  .role{border-radius:16px;padding:15px;border:1px solid var(--line);background:var(--card);position:relative;overflow:hidden}
+  .role::before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:var(--rc,var(--accent))}
+  .role.wolf{--rc:var(--wolf)} .role.god{--rc:var(--god)} .role.vil{--rc:var(--villager)}
+  .role__top{display:flex;align-items:center;gap:11px;margin-bottom:8px}
+  .role__emoji{font-size:30px;flex:none;width:50px;height:50px;display:grid;place-items:center;border-radius:13px;background:var(--card2)}
+  .role.wolf .role__emoji{background:var(--wolf-bg)} .role.god .role__emoji{background:var(--god-bg)} .role.vil .role__emoji{background:var(--villager-bg)}
+  .role__name{font-size:17px;font-weight:900}
+  .role__fac{font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:999px;display:inline-block;margin-top:2px}
+  .role.wolf .role__fac{color:var(--wolf);background:var(--wolf-bg)}
+  .role.god .role__fac{color:var(--god);background:var(--god-bg)}
+  .role.vil .role__fac{color:var(--villager);background:var(--villager-bg)}
+  .role ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:6px}
+  .role li{font-size:13.5px;color:var(--ink);display:flex;gap:8px;align-items:flex-start}
+  .role li::before{content:"▹";color:var(--rc,var(--accent));font-weight:900;flex:none}
+  .role li.warn{color:var(--wolf)} .role li.warn::before{content:"⚠";color:var(--wolf)}
+
+  /* 場次切換 */
+  .switcher{display:flex;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:5px;margin-bottom:16px}
+  .switcher button{flex:1;border:none;background:transparent;color:var(--muted);font-weight:800;font-size:14.5px;
+    padding:11px 8px;border-radius:10px;cursor:pointer;transition:.2s;font-family:inherit}
+  .switcher button .e{font-size:17px}
+  .switcher button.on{color:#1a1430;background:linear-gradient(135deg,var(--gold-soft),var(--gold));box-shadow:0 6px 16px -8px rgba(251,191,36,.5)}
+  html[data-theme="light"] .switcher button.on{color:#fff;background:linear-gradient(135deg,var(--accent),#9d6bff)}
+  .round{display:none} .round.show{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .compo{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 4px}
+  .chip{font-size:13px;font-weight:800;padding:7px 12px;border-radius:11px;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line)}
+  .chip.w{color:var(--wolf);background:var(--wolf-bg)} .chip.g{color:var(--god);background:var(--god-bg)} .chip.v{color:var(--villager);background:var(--villager-bg)}
+
+  /* 勝負判定 */
+  .win{display:grid;gap:12px}
+  @media(min-width:560px){.win{grid-template-columns:1fr 1fr}}
+  .win__box{border-radius:15px;padding:16px;border:1px solid var(--line)}
+  .win__box.good{background:var(--god-bg);border-color:color-mix(in srgb,var(--god) 35%,transparent)}
+  .win__box.evil{background:var(--wolf-bg);border-color:color-mix(in srgb,var(--wolf) 35%,transparent)}
+  .win__box h4{font-size:16px;font-weight:900;display:flex;align-items:center;gap:8px}
+  .win__box.good h4{color:var(--god)} .win__box.evil h4{color:var(--wolf)}
+  .win__box p{font-size:13.5px;color:var(--ink);margin-top:8px}
+
+  /* 名詞解釋 */
+  details.term{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 16px;overflow:hidden}
+  details.term + details.term{margin-top:10px}
+  details.term summary{cursor:pointer;list-style:none;padding:14px 0;font-weight:800;font-size:15px;display:flex;align-items:center;gap:9px}
+  details.term summary::-webkit-details-marker{display:none}
+  details.term summary .chev{margin-left:auto;transition:.25s;color:var(--muted)}
+  details.term[open] summary .chev{transform:rotate(180deg)}
+  details.term .body{font-size:13.5px;color:var(--muted);padding:0 0 16px;line-height:1.8}
+  details.term .body b{color:var(--gold)}
+
+  .note{font-size:12.5px;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:11px 14px;margin-top:12px}
+  .note b{color:var(--accent)}
+
+  .callout{display:flex;gap:11px;padding:14px;border-radius:14px;background:color-mix(in srgb,var(--gold) 12%,transparent);
+    border:1px solid color-mix(in srgb,var(--gold) 35%,transparent);margin-top:14px}
+  .callout .e{font-size:22px;flex:none}
+  .callout div{font-size:13.5px}
+  .callout b{color:var(--gold)}
+
+  /* footer */
+  .site-credit{text-align:center;padding:34px 16px 26px;font-size:13px;color:var(--muted);
+    font-family:system-ui,-apple-system,sans-serif;border-top:1px solid var(--line);margin-top:30px}
+  .site-credit__heart{display:inline-block;margin:0 2px;filter:saturate(1.1)}
+  .site-credit__author{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;padding-bottom:1px;transition:color .2s,border-color .2s}
+  .site-credit__author:hover{color:var(--gold);border-bottom-color:var(--gold)}
+  .site-credit .meta{display:block;margin-top:8px;font-size:11.5px;opacity:.8}
+
+  /* back to top */
+  #toTop{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:40;width:46px;height:46px;border-radius:14px;
+    border:1px solid var(--line);background:color-mix(in srgb,var(--bg2) 90%,transparent);color:var(--ink);font-size:20px;
+    cursor:pointer;opacity:0;pointer-events:none;transition:.3s;backdrop-filter:blur(8px);box-shadow:var(--shadow)}
+  #toTop.show{opacity:1;pointer-events:auto}
+
+  /* SW 更新通知列 */
+  #sw-update-bar{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:12px;
+    background:#1e1b4b;color:#fff;padding:12px 16px;border-radius:14px;box-shadow:0 14px 34px -10px rgba(0,0,0,.55);
+    font:14.5px system-ui,sans-serif;max-width:calc(100vw - 28px)}
+  #sw-update-bar button{cursor:pointer;border:none;border-radius:9px;font-weight:700;font:inherit}
+  #sw-go{background:linear-gradient(135deg,#fcd34d,#fb923c);color:#3b2a00;padding:8px 15px}
+  #sw-x{background:transparent;color:#aeb6d4;padding:6px 9px}
+</style>
+</head>
+<body>
+
+<!-- ===== 頂部 ===== -->
+<header class="topbar">
+  <div class="topbar__row">
+    <div class="brand">
+      <img src="favicon.svg" alt="狼人殺" />
+      <span>狼人殺冠軍賽<small>石門國小課照班</small></span>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="切換亮暗主題" title="切換亮暗主題">🌙</button>
+  </div>
+  <nav class="nav" id="nav">
+    <a href="#overview">🏆 賽事總覽</a>
+    <a href="#flow">🌙 遊戲流程</a>
+    <a href="#roles">🎭 角色技能</a>
+    <a href="#rounds">⚔️ 兩場賽制</a>
+    <a href="#win">🚩 勝負判定</a>
+    <a href="#mvp">⭐ MVP 投票</a>
+    <a href="#terms">📖 名詞解釋</a>
+  </nav>
+</header>
+
+<!-- ===== Hero ===== -->
+<div class="hero">
+  <img class="hero__moon" src="favicon.svg" alt="滿月與狼" />
+  <h1>🐺 <span class="g">狼人殺冠軍賽</span></h1>
+  <p class="sub">石門國小課照班 · 本日賽制完整規則</p>
+  <div class="school">🏫 桃園市龍潭區石門國民小學</div>
+  <div class="badges">
+    <span class="pill gold">🎯 兩場 12 人賽</span>
+    <span class="pill">🚔 全程上警局</span>
+    <span class="pill">⭐ 每場選 MVP</span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ===== 賽事總覽 ===== -->
+  <section id="overview">
+    <div class="sec-head">
+      <div class="ic">🏆</div>
+      <div><h2>賽事總覽</h2><p>開賽前先搞懂的大原則</p></div>
+    </div>
+    <p class="card lead">本日將進行 <b>兩場 12 人</b> 的對局，兩場全程 <b>「上警局」</b>（開局競選警長）。
+      每一局結束後都會 <b>投票選出該場 MVP</b>，看誰是大家心中玩得最精彩的玩家！</p>
+
+    <div class="grid cols-3" style="margin-top:14px">
+      <div class="card stat"><span class="n">2</span><span class="l">場對局</span></div>
+      <div class="card stat"><span class="n">12</span><span class="l">每場人數</span></div>
+      <div class="card stat"><span class="n">2</span><span class="l">MVP 票／人</span></div>
+    </div>
+
+    <div class="callout">
+      <span class="e">⭐</span>
+      <div><b>MVP 投票怎麼投？</b> 每人有 <b>2 票</b>，投給你覺得該場 <b>玩得最好的兩位玩家</b>，
+        <b>不分陣營、不分輸贏</b>。注意：兩票不可投給同一人，<b>重複投則算棄票</b>。</div>
+    </div>
+  </section>
+
+  <!-- ===== 遊戲流程 ===== -->
+  <section id="flow">
+    <div class="sec-head">
+      <div class="ic">🌙</div>
+      <div><h2>遊戲流程</h2><p>一個「夜晚 → 白天」就是一回合，循環到分出勝負</p></div>
+    </div>
+    <div class="card">
+      <div class="flow">
+        <div class="step"><div class="step__num">1</div><div class="step__body">
+          <h4>🌙 天黑請閉眼 <span class="tag night">夜晚</span></h4>
+          <p>天神（主持人）宣布天黑，全體玩家閉眼低頭，接著依序喚醒各角色行動。</p></div></div>
+        <div class="step"><div class="step__num">2</div><div class="step__body">
+          <h4>🐺 狼人睜眼行動 <span class="tag night">夜晚</span></h4>
+          <p>狼人們互相確認隊友，共同決定今晚要「刀」掉哪一位玩家。</p></div></div>
+        <div class="step"><div class="step__num">3</div><div class="step__body">
+          <h4>🔮 預言家查驗 <span class="tag night">夜晚</span></h4>
+          <p>預言家指定一名玩家，由天神比手勢告知對方是「好人」或「狼人」。</p></div></div>
+        <div class="step"><div class="step__num">4</div><div class="step__body">
+          <h4>🧪 女巫用藥 <span class="tag night">夜晚</span></h4>
+          <p>天神告知女巫今晚誰被狼刀，女巫決定是否用 <b>解藥</b> 救人，或用 <b>毒藥</b> 毒殺一人（每晚限用一瓶）。</p></div></div>
+        <div class="step"><div class="step__num">5</div><div class="step__body">
+          <h4>🛡️ 守衛守護 <span class="tag night">夜晚</span><span class="tag" style="color:var(--muted)">僅第二場</span></h4>
+          <p>守衛選一名玩家守護，使其當晚免於狼刀（可守自己，但不可連續兩晚守同一人）。</p></div></div>
+        <div class="step"><div class="step__num">6</div><div class="step__body">
+          <h4>🌅 天亮公布 <span class="tag day">白天</span></h4>
+          <p>天神宣布天亮，公布昨晚出局的玩家名單（被刀、被毒等結果）。</p></div></div>
+        <div class="step"><div class="step__num">7</div><div class="step__body">
+          <h4>🚔 上警局（競選警長） <span class="tag day">白天</span></h4>
+          <p>首個白天進行警長競選：想參選者「上警」發言拉票，最後投票選出警長。警長擁有 <b>1.5 票</b> 與發言順序的決定權，是好人重要的指揮位。</p></div></div>
+        <div class="step"><div class="step__num">8</div><div class="step__body">
+          <h4>💬 依序發言 <span class="tag day">白天</span></h4>
+          <p>玩家輪流發言、推理、表態，找出可疑的狼人；出局者可留下「遺言」。</p></div></div>
+        <div class="step"><div class="step__num">9</div><div class="step__body">
+          <h4>✋ 投票放逐 <span class="tag day">白天</span></h4>
+          <p>全體投票，得票最高者被放逐出局。接著回到天黑，進入下一回合。</p></div></div>
+      </div>
+      <div class="note"><b>提示：</b>獵人、騎士等角色的技能會穿插在流程中觸發（例如出局時開槍、白天隨時翻牌）。詳細請看下方「角色技能」。實際喚醒順序與警長細則，以現場 <b>天神（主持人）</b> 宣布為準。</div>
+    </div>
+  </section>
+
+  <!-- ===== 角色技能 ===== -->
+  <section id="roles">
+    <div class="sec-head">
+      <div class="ic">🎭</div>
+      <div><h2>角色技能</h2><p>三大陣營・本賽事全部角色一次看懂</p></div>
+    </div>
+
+    <h3 style="color:var(--wolf);font-size:16px;margin:6px 0 12px;display:flex;gap:8px;align-items:center">🐺 狼人陣營 <span style="font-size:12px;color:var(--muted);font-weight:600">／ 邪惡聯盟</span></h3>
+    <div class="grid cols-2">
+      <div class="role wolf">
+        <div class="role__top"><div class="role__emoji">👑</div><div><div class="role__name">狼王</div><span class="role__fac">狼人陣營</span></div></div>
+        <ul>
+          <li>夜晚與狼隊友一起「刀人」。</li>
+          <li>在自己發言階段可<b>翻牌自爆</b>，自爆立即天黑。</li>
+          <li>自爆時可<b>帶走一名玩家</b>一起出局。</li>
+          <li class="warn">若被女巫毒死則「悶技能」，不能帶走玩家。</li>
+        </ul>
+      </div>
+      <div class="role wolf">
+        <div class="role__top"><div class="role__emoji">🐺</div><div><div class="role__name">小狼</div><span class="role__fac">狼人陣營</span></div></div>
+        <ul>
+          <li>夜晚與狼隊友一起「刀人」。</li>
+          <li>在自己發言階段可<b>翻牌自爆</b>，自爆立即天黑（不能帶人走）。</li>
+          <li>第一場有 3 隻、第二場有 2 隻。</li>
+        </ul>
+      </div>
+      <div class="role wolf">
+        <div class="role__top"><div class="role__emoji">👹</div><div><div class="role__name">惡靈騎士</div><span class="role__fac">狼人陣營 · 僅第二場</span></div></div>
+        <ul>
+          <li>擁有一次性的<b>反傷技能</b>。</li>
+          <li>夜晚被預言家查驗 → 反傷預言家，<b>隔天預言家淘汰</b>。</li>
+          <li>夜晚被女巫灑毒 → 反傷女巫，<b>隔天女巫淘汰</b>。</li>
+          <li>技能只能用一次，看哪位神職<b>先</b>對他使用技能。</li>
+          <li class="warn">不能自刀，也不能翻牌自爆。</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="color:var(--god);font-size:16px;margin:22px 0 12px;display:flex;gap:8px;align-items:center">✨ 神職 <span style="font-size:12px;color:var(--muted);font-weight:600">／ 好人 · 正義聯盟</span></h3>
+    <div class="grid cols-2">
+      <div class="role god">
+        <div class="role__top"><div class="role__emoji">🔮</div><div><div class="role__name">預言家</div><span class="role__fac">神職</span></div></div>
+        <ul>
+          <li>每晚可<b>查驗一名玩家</b>的陣營身分（好人／狼人）。</li>
+          <li>好人方最重要的「金水」來源，要帶領好人找狼。</li>
+        </ul>
+      </div>
+      <div class="role god">
+        <div class="role__top"><div class="role__emoji">🧪</div><div><div class="role__name">女巫</div><span class="role__fac">神職</span></div></div>
+        <ul>
+          <li>手握兩瓶藥：<b>解藥</b>救當晚被狼刀的人、<b>毒藥</b>毒殺一名玩家。</li>
+          <li>每晚<b>只能使用一瓶藥</b>。</li>
+          <li class="warn">中狼刀不可自救；但若毒藥還沒用，仍可選擇灑毒。</li>
+        </ul>
+      </div>
+      <div class="role god">
+        <div class="role__top"><div class="role__emoji">🏹</div><div><div class="role__name">獵人</div><span class="role__fac">神職</span></div></div>
+        <ul>
+          <li>出局時可以<b>開槍帶走一名玩家</b>。</li>
+          <li class="warn">若被女巫毒死則「悶槍」，無法開槍。</li>
+          <li class="warn">第二場：夜晚遭狼刀的「夜槍」<b>帶不走惡靈騎士</b>。</li>
+        </ul>
+      </div>
+      <div class="role god">
+        <div class="role__top"><div class="role__emoji">⚔️</div><div><div class="role__name">騎士</div><span class="role__fac">神職 · 僅第一場</span></div></div>
+        <ul>
+          <li>白天可<b>隨時翻牌</b>，指認一名玩家驗明陣營。</li>
+          <li>若對方是<b>狼人</b> → 狼人淘汰，遊戲立即天黑。</li>
+          <li>若對方是<b>好人</b> → 騎士「以死謝罪」出局，遊戲繼續。</li>
+          <li>被查驗者不需翻牌，一律由天神告知結果。</li>
+        </ul>
+      </div>
+      <div class="role god">
+        <div class="role__top"><div class="role__emoji">🛡️</div><div><div class="role__name">守衛</div><span class="role__fac">神職 · 僅第二場</span></div></div>
+        <ul>
+          <li>每晚可<b>守護一名玩家</b>免於狼刀（可自守）。</li>
+          <li>每晚<b>不可守護同一名玩家</b>（不能連守）。</li>
+          <li class="warn">「同守同救」：盾與女巫解藥同時用在同一人 → 該玩家淘汰！</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="color:var(--villager);font-size:16px;margin:22px 0 12px;display:flex;gap:8px;align-items:center">👥 平民 <span style="font-size:12px;color:var(--muted);font-weight:600">／ 好人 · 正義聯盟</span></h3>
+    <div class="grid cols-2">
+      <div class="role vil">
+        <div class="role__top"><div class="role__emoji">🧑‍🌾</div><div><div class="role__name">平民（民）</div><span class="role__fac">好人陣營</span></div></div>
+        <ul>
+          <li>沒有特殊技能，靠<b>推理、發言與投票</b>幫助好人獲勝。</li>
+          <li>用一張嘴保護神職、抓出狼人，是好人不可或缺的力量。</li>
+          <li>兩場各有 4 位平民。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 兩場賽制 ===== -->
+  <section id="rounds">
+    <div class="sec-head">
+      <div class="ic">⚔️</div>
+      <div><h2>兩場賽制</h2><p>兩場的角色配置與特殊規則不同，切換看細節</p></div>
+    </div>
+
+    <div class="switcher" id="roundSwitch">
+      <button class="on" data-r="1"><span class="e">①</span> 第一場</button>
+      <button data-r="2"><span class="e">②</span> 第二場</button>
+    </div>
+
+    <!-- 第一場 -->
+    <div class="round show" data-round="1">
+      <div class="card">
+        <h3 style="font-size:18px;font-weight:900;margin-bottom:4px">第一場 · 騎士登場 ⚔️</h3>
+        <p style="font-size:13px;color:var(--muted)">12 人 = 4 狼人 ／ 4 神職 ／ 4 平民</p>
+        <div class="compo">
+          <span class="chip w">👑 狼王 ×1</span><span class="chip w">🐺 小狼 ×3</span>
+          <span class="chip g">🔮 預言家</span><span class="chip g">🧪 女巫</span>
+          <span class="chip g">🏹 獵人</span><span class="chip g">⚔️ 騎士</span>
+          <span class="chip v">🧑‍🌾 平民 ×4</span>
+        </div>
+        <div class="note" style="margin-top:14px">
+          <b>本場重點規則</b><br>
+          ・狼人在自己發言階段可翻牌自爆，<b>自爆立即天黑</b>。<br>
+          ・狼王自爆可<b>帶一名玩家走</b>；但若被女巫毒則悶技能、不能帶人。<br>
+          ・<b>騎士</b>可白天隨時翻牌驗人：驗到狼 → 狼出局並天黑；驗到好人 → 騎士以死謝罪。
+        </div>
+      </div>
+      <div class="card">
+        <h4 style="font-weight:800;margin-bottom:10px">🚩 第一場 勝負判定</h4>
+        <div class="win">
+          <div class="win__box good"><h4>😇 好人獲勝</h4><p>場上 <b>狼人全部出局</b>。</p></div>
+          <div class="win__box evil"><h4>😈 狼人獲勝</h4><p>好人遭「<b>屠邊</b>」（神或民其中一方全部淘汰），<br>或 <b>場上狼人人數大於好人人數</b>（綁票）。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第二場 -->
+    <div class="round" data-round="2">
+      <div class="card">
+        <h3 style="font-size:18px;font-weight:900;margin-bottom:4px">第二場 · 惡靈騎士 vs 守衛 👹🛡️</h3>
+        <p style="font-size:13px;color:var(--muted)">12 人 = 4 狼人 ／ 4 神職 ／ 4 平民</p>
+        <div class="compo">
+          <span class="chip w">👑 狼王 ×1</span><span class="chip w">👹 惡靈騎士 ×1</span><span class="chip w">🐺 小狼 ×2</span>
+          <span class="chip g">🔮 預言家</span><span class="chip g">🧪 女巫</span>
+          <span class="chip g">🏹 獵人</span><span class="chip g">🛡️ 守衛</span>
+          <span class="chip v">🧑‍🌾 平民 ×4</span>
+        </div>
+        <div class="note" style="margin-top:14px">
+          <b>本場重點規則</b><br>
+          ・狼人發言階段可自爆，<b>自爆需翻牌、立即天黑</b>；狼王自爆可帶人走（被毒則悶技能）。<br>
+          ・<b>惡靈騎士</b>有一次反傷：被預言家查 → 隔天預言家死；被女巫毒 → 隔天女巫死（不能自刀、不能自爆）。<br>
+          ・<b>守衛</b>每晚守一人免狼刀、可自守但不可連守；<b>同守同救會死人</b>。<br>
+          ・<b>獵人夜槍帶不走惡靈騎士</b>。
+        </div>
+      </div>
+      <div class="card">
+        <h4 style="font-weight:800;margin-bottom:10px">🚩 第二場 勝負判定</h4>
+        <div class="win">
+          <div class="win__box good"><h4>🦸 正義聯盟獲勝</h4><p>場上 <b>狼人全部出局</b>。</p></div>
+          <div class="win__box evil"><h4>🦹 邪惡聯盟獲勝</h4><p>好人遭「<b>屠邊</b>」（神或民其中一方全部淘汰），<br>或 <b>場上狼人人數大於好人人數</b>（綁票）。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 勝負判定（共通） ===== -->
+  <section id="win">
+    <div class="sec-head">
+      <div class="ic">🚩</div>
+      <div><h2>勝負判定總則</h2><p>三種結束條件，兩場通用</p></div>
+    </div>
+    <div class="grid cols-3">
+      <div class="card">
+        <h4 style="color:var(--god);font-weight:900;font-size:15px">😇 好人勝</h4>
+        <p style="font-size:13.5px;color:var(--muted);margin-top:6px">把場上 <b style="color:var(--god)">狼人全部清光</b>，正義聯盟獲勝。</p>
+      </div>
+      <div class="card">
+        <h4 style="color:var(--wolf);font-weight:900;font-size:15px">😈 屠邊</h4>
+        <p style="font-size:13.5px;color:var(--muted);margin-top:6px"><b style="color:var(--wolf)">神職</b> 或 <b style="color:var(--wolf)">平民</b> 其中一方全部淘汰，狼人（邪惡聯盟）獲勝。</p>
+      </div>
+      <div class="card">
+        <h4 style="color:var(--wolf);font-weight:900;font-size:15px">😈 綁票</h4>
+        <p style="font-size:13.5px;color:var(--muted);margin-top:6px">場上 <b style="color:var(--wolf)">狼人人數大於好人人數</b>，好人已無力回天，狼人獲勝。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MVP ===== -->
+  <section id="mvp">
+    <div class="sec-head">
+      <div class="ic">⭐</div>
+      <div><h2>MVP 投票</h2><p>每一場結束後的最佳玩家票選</p></div>
+    </div>
+    <div class="card">
+      <div class="grid cols-2">
+        <div>
+          <h4 style="font-weight:900;font-size:16px;display:flex;gap:8px;align-items:center">🗳️ 怎麼投</h4>
+          <ul style="list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:9px">
+            <li style="display:flex;gap:9px;font-size:14px"><span>1️⃣</span><span>每位玩家有 <b style="color:var(--gold)">2 票</b>。</span></li>
+            <li style="display:flex;gap:9px;font-size:14px"><span>2️⃣</span><span>投給你覺得該場 <b style="color:var(--gold)">玩得最好的兩位玩家</b>。</span></li>
+            <li style="display:flex;gap:9px;font-size:14px"><span>3️⃣</span><span><b style="color:var(--gold)">不分陣營、不分輸贏</b>，純粹看表現。</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-weight:900;font-size:16px;display:flex;gap:8px;align-items:center">⚠️ 注意事項</h4>
+          <ul style="list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:9px">
+            <li style="display:flex;gap:9px;font-size:14px;color:var(--wolf)"><span>🚫</span><span>兩票<b>不可重複</b>投給同一個人。</span></li>
+            <li style="display:flex;gap:9px;font-size:14px;color:var(--wolf)"><span>🗑️</span><span>若重複投同一人，<b>該票作廢（棄票）</b>。</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 名詞解釋 ===== -->
+  <section id="terms">
+    <div class="sec-head">
+      <div class="ic">📖</div>
+      <div><h2>名詞解釋</h2><p>看不懂的關鍵字點開來查</p></div>
+    </div>
+
+    <details class="term" open>
+      <summary>🚔 上警局（警長競選）<span class="chev">▾</span></summary>
+      <div class="body">開局時開放玩家「上警」競選 <b>警長</b>。警長通常擁有 <b>1.5 票</b>、能決定發言順序，並在死亡時移交或撕掉警徽。本賽事兩場皆有上警局，警長是好人非常重要的指揮位。細則以天神宣布為準。</div>
+    </details>
+    <details class="term">
+      <summary>💥 自爆 <span class="chev">▾</span></summary>
+      <div class="body">狼人在<b>自己的發言階段</b>主動翻牌曝光身分。自爆會<b>立即天黑</b>，當天剩餘的發言與投票全部跳過——常用來打斷好人的推理節奏或保護隊友。</div>
+    </details>
+    <details class="term">
+      <summary>😶 悶技能 / 悶槍 <span class="chev">▾</span></summary>
+      <div class="body">角色被 <b>女巫毒藥</b> 毒死時，其「出局技能」會被封印失效：狼王無法帶人走（悶技能）、獵人無法開槍（悶槍）。</div>
+    </details>
+    <details class="term">
+      <summary>🔪 屠邊 <span class="chev">▾</span></summary>
+      <div class="body">好人分成「神職」與「平民」兩邊。只要其中<b>一整邊全部出局</b>（4 位神全死，或 4 位民全死），就算「屠邊」，由<b>狼人陣營獲勝</b>。</div>
+    </details>
+    <details class="term">
+      <summary>🔒 綁票 <span class="chev">▾</span></summary>
+      <div class="body">場上<b>狼人人數大於好人人數</b>時，好人即使全部投票也翻不了盤，遊戲結束、<b>狼人獲勝</b>。</div>
+    </details>
+    <details class="term">
+      <summary>🛡️🧪 同守同救 <span class="chev">▾</span></summary>
+      <div class="body">第二場專屬：當守衛的<b>盾</b>與女巫的<b>解藥</b>，在同一晚同時用在<b>同一名玩家</b>身上時，兩股力量相衝，反而導致<b>該玩家淘汰</b>。守衛與女巫要小心別重疊。</div>
+    </details>
+    <details class="term">
+      <summary>🌙🏹 夜槍 <span class="chev">▾</span></summary>
+      <div class="body">獵人在<b>夜晚遭狼刀</b>淘汰時開的槍。第二場特別規定：獵人的夜槍<b>帶不走惡靈騎士</b>。</div>
+    </details>
+    <details class="term">
+      <summary>↩️ 反傷（惡靈騎士）<span class="chev">▾</span></summary>
+      <div class="body">第二場惡靈騎士的一次性技能：當神職主動對他出手（預言家查驗 / 女巫灑毒），技能會「反彈」回去，讓那位神職<b>隔天淘汰</b>。只對<b>第一個</b>對他用技能的神職生效。</div>
+    </details>
+
+    <div class="note" style="margin-top:16px">📌 本頁規則整理自《石門國小課照班狼人殺冠軍賽規則》。實際對局中若有未盡事宜，一律以現場 <b>天神（主持人）</b> 的裁決為準，祝大家玩得開心、推理愉快！🐺🌙</div>
+  </section>
+
+</main>
+
+<button id="toTop" aria-label="回到頂端">↑</button>
+
+<!-- ===== footer ===== -->
+<footer class="site-credit">
+  Made with <span class="site-credit__heart" aria-label="愛心">❤️</span> by
+  <a href="https://www.smes.tyc.edu.tw/modules/tadnews/page.php?ncsn=11&nsn=16#a5"
+     target="_blank" rel="noopener noreferrer" class="site-credit__author">阿凱老師</a>
+  <span class="meta">桃園市龍潭區石門國民小學 · 課照班狼人殺冠軍賽 🐺</span>
+</footer>
+
+<script>
+/* ---- 亮暗主題切換 ---- */
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  var saved=localStorage.getItem('wolf-theme');
+  if(saved){ root.setAttribute('data-theme',saved); }
+  function sync(){ btn.textContent = root.getAttribute('data-theme')==='dark' ? '🌙' : '☀️'; }
+  sync();
+  btn.addEventListener('click',function(){
+    var next = root.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme',next); localStorage.setItem('wolf-theme',next); sync();
+    document.querySelector('meta[name=theme-color]').setAttribute('content', next==='dark'?'#1e1b4b':'#e9e7fb');
+  });
+})();
+
+/* ---- 場次切換 ---- */
+(function(){
+  var sw=document.getElementById('roundSwitch');
+  sw.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    sw.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
+    document.querySelectorAll('.round').forEach(function(r){
+      r.classList.toggle('show', r.getAttribute('data-round')===b.getAttribute('data-r'));
+    });
+  });
+})();
+
+/* ---- 導覽列高亮（scrollspy）+ 回到頂端 ---- */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.nav a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);
+  var toTop=document.getElementById('toTop');
+  function onScroll(){
+    var y=window.scrollY+130, cur=secs[0];
+    secs.forEach(function(s){ if(s.offsetTop<=y) cur=s; });
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+(cur&&cur.id)); });
+    toTop.classList.toggle('show', window.scrollY>500);
+    // 讓 active 的 nav 項目滾進可視範圍
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+})();
+
+/* ---- Service Worker 註冊 + 版本更新通知 ---- */
+(function(){
+  if(!('serviceWorker' in navigator)) return;
+  var APP_VERSION='2026.06.17-1';
+  var reloaded=false;
+  function showBar(waiting){
+    if(document.getElementById('sw-update-bar')) return;
+    var b=document.createElement('div'); b.id='sw-update-bar'; b.setAttribute('role','status');
+    b.innerHTML='<span>✦ 網站有新版本</span><button id="sw-go">重新整理載入</button><button id="sw-x" aria-label="關閉">✕</button>';
+    document.body.appendChild(b);
+    document.getElementById('sw-x').onclick=function(){ b.remove(); };
+    document.getElementById('sw-go').onclick=function(){ waiting ? waiting.postMessage({type:'SKIP_WAITING'}) : location.reload(); };
+  }
+  navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(function(reg){
+    if(reg.waiting && navigator.serviceWorker.controller) showBar(reg.waiting);
+    reg.addEventListener('updatefound',function(){
+      var nw=reg.installing; if(!nw) return;
+      nw.addEventListener('statechange',function(){
+        if(nw.state==='installed' && navigator.serviceWorker.controller) showBar(reg.waiting||nw);
+      });
+    });
+    setInterval(function(){ reg.update().catch(function(){}); }, 60000);
+  }).catch(function(){});
+  navigator.serviceWorker.addEventListener('controllerchange',function(){
+    if(reloaded) return; reloaded=true; location.reload();
+  });
+  function checkVer(){ fetch('version.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})
+    .then(function(d){ if(d&&d.version&&d.version!==APP_VERSION) showBar(null); }).catch(function(){}); }
+  ['focus','online','pageshow'].forEach(function(ev){ window.addEventListener(ev,checkVer); });
+  document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible') checkVer(); });
+  setTimeout(checkVer,8000); setInterval(checkVer,180000);
+})();
+</script>
+</body>
+</html>

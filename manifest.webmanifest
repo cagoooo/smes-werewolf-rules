@@ -1,0 +1,18 @@
+{
+  "name": "石門國小課照班 狼人殺冠軍賽 · 規則總覽",
+  "short_name": "狼人殺規則",
+  "description": "桃園市龍潭區石門國民小學 課照班狼人殺冠軍賽完整規則與流程。",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#15132e",
+  "theme_color": "#1e1b4b",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

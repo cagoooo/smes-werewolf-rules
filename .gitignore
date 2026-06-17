@@ -1,0 +1,10 @@
+# 本地預覽設定
+.claude/
+
+# 規則原始素材（網站內容已整理進 index.html）
+rules_extracted.txt
+*.docx
+
+# 系統檔
+Thumbs.db
+.DS_Store
