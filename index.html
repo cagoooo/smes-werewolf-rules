@@ -14,8 +14,8 @@
 <meta property="og:url" content="https://cagoooo.github.io/smes-werewolf-rules/" />
 <meta property="og:title" content="🐺 石門國小課照班 狼人殺冠軍賽 · 規則總覽" />
 <meta property="og:description" content="兩場 12 人賽制、角色技能、遊戲流程、勝負判定與名詞解釋，一頁看懂怎麼玩。" />
-<meta property="og:image" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-4" />
-<meta property="og:image:secure_url" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-4" />
+<meta property="og:image" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-5" />
+<meta property="og:image:secure_url" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-5" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:type" content="image/png" />
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="🐺 石門國小課照班 狼人殺冠軍賽 · 規則總覽" />
 <meta name="twitter:description" content="兩場 12 人賽制、角色技能、遊戲流程、勝負判定與名詞解釋，一頁看懂怎麼玩。" />
-<meta name="twitter:image" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-4" />
+<meta name="twitter:image" content="https://cagoooo.github.io/smes-werewolf-rules/assets/og-cover.png?v=2026.06.17-5" />
 
 <style>
   :root{
@@ -151,9 +151,9 @@
   .role.god .role__fac{color:var(--god);background:var(--god-bg)}
   .role.vil .role__fac{color:var(--villager);background:var(--villager-bg)}
   .role ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:6px}
-  .role li{font-size:13.5px;color:var(--ink);display:flex;gap:8px;align-items:flex-start}
-  .role li::before{content:"▹";color:var(--rc,var(--accent));font-weight:900;flex:none}
-  .role li.warn{color:var(--wolf)} .role li.warn::before{content:"⚠";color:var(--wolf)}
+  .role li{font-size:13.5px;color:var(--ink);position:relative;padding-left:16px;line-height:1.6}
+  .role li::before{content:"▹";color:var(--rc,var(--accent));font-weight:900;position:absolute;left:0;top:1px}
+  .role li.warn{color:var(--wolf)} .role li.warn::before{content:"⚠";color:var(--wolf);position:absolute;left:0;top:1px}
 
   /* 場次切換 */
   .switcher{display:flex;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:5px;margin-bottom:16px}
@@ -657,7 +657,7 @@
 /* ---- Service Worker 註冊 + 版本更新通知 ---- */
 (function(){
   if(!('serviceWorker' in navigator)) return;
-  var APP_VERSION='2026.06.17-4';
+  var APP_VERSION='2026.06.17-5';
   var reloaded=false;
   function showBar(waiting){
     if(document.getElementById('sw-update-bar')) return;
