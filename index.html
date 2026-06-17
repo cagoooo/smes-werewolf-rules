@@ -111,9 +111,11 @@
   .nav a:hover{color:var(--ink)}
   .nav a.active{color:#1a1430;background:linear-gradient(135deg,var(--gold-soft),var(--gold));border-color:transparent}
   html[data-theme="light"] .nav a.active{color:#fff;background:linear-gradient(135deg,var(--accent),#9d6bff)}
-  /* 桌機不需要漸層 */
+  /* 桌機：改為換行置中，徹底擺脫橫向捲動，任何視窗寬度都不會再靜默裁掉後面的項目 */
   @media(min-width:768px){
     .nav-wrap{-webkit-mask-image:none;mask-image:none}
+    .nav{flex-wrap:wrap;justify-content:center;overflow-x:visible;row-gap:8px}
+    .nav::after{display:none}
   }
 
   /* ====== Hero ====== */
