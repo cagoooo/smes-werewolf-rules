@@ -1,4 +1,4 @@
 {
-    "version":  "2026.06.17-7",
-    "notes":  "修正手機導覽列 iOS Safari scroll clip 與右側漸層提示 UX"
+    "version":  "2026.06.19-1",
+    "notes":  "套用 Claude Design 新版視覺：3D 角色插畫卡、極光氛圍、scrollspy 進度條、count-up 數字"
 }
